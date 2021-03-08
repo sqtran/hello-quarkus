@@ -11,8 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 
 import org.jboss.logging.Logger;
 
@@ -34,7 +33,7 @@ public class Greeter {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/hello")
 	public String hello() {
-		return "hello";
+		return "hello world";
 	}
 
 	@GET
