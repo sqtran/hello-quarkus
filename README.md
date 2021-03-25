@@ -94,7 +94,3 @@ resources:
     cpu: '4'
     memory: 4Gi
 ```
-The application is now runnable using
-```bash
-java -jar target/hello-quarkus-1.0-SNAPSHOT-runner.jar
-```
