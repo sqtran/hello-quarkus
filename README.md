@@ -84,7 +84,7 @@ oc new-app quay.io/quarkus/ubi-quarkus-native-s2i:20.2.0-java11~https://github.c
 One gotcha is the default resources are a little low for building native images.  You can speed up build times by increasing the resources available in your build pods.  It was taking ~6 minutes with the default settings on my test cluster.
 
 ```bash
-oc patch bc/quarkus-weather -p '{"spec":{"resources":{"limits":{"cpu":"4", "memory":"4Gi"}}}}'
+oc patch bc/hello-quarkus -p '{"spec":{"resources":{"limits":{"cpu":"4", "memory":"4Gi"}}}}'
 ```
 
 It just adds the following `yaml` stanza to your `BuildConfig`.  It cut the build time down in half, but you can adjust to much as you have available.  Note that a lot of the build time is due to downloading dependencies, so you're gonna hit a limit to your build speed eventually.
