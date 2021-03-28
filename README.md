@@ -94,3 +94,15 @@ resources:
     cpu: '4'
     memory: 4Gi
 ```
+
+## Update and a Warning
+
+I noticed that the s2i images were severely bloated.  Some of the builds were ~1.4GB in size, which is ridiculous.  I've resorted to building them locally for now, and pushing them to where they need to (internal or external registry).  I'll have to explore why this is the case later.
+
+```bash
+# build native file
+mvn package -Pnative
+
+# build container image
+podman build -f /src/main/docker/Dockerfile.native -t <registry>hello-quarkus:<tag> .
+```
