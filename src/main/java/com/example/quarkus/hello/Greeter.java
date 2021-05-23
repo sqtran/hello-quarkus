@@ -33,13 +33,15 @@ public class Greeter {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/hello")
 	public String hello() {
+		logger.info("hello endpoint called");
 		return "hello world";
 	}
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/headers")
-	public Response listAllHeaders(@Context HttpHeaders headers) {
+	public Response headers(@Context HttpHeaders headers) {
+		logger.info("headers endpoint called");
 
 		MultivaluedMap<String, String> headmap = headers.getRequestHeaders();
 		String msg = String.format("Listed %d headers\n", headmap.size());
@@ -56,8 +58,8 @@ public class Greeter {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/health")
-    public String healthz() {
-      logger.info("status.:.UP");
+    public String health() {
+    	logger.info("health endpoint called");
     	return "status.:.UP";
     }
 
