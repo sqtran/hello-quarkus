@@ -11,7 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import org.jboss.logging.Logger;
@@ -44,16 +43,9 @@ public class Greeter {
 	public Response headers(@Context HttpHeaders headers) {
 		logger.info("headers endpoint called");
 
-		MultivaluedMap<String, String> headmap = headers.getRequestHeaders();
-		String msg = String.format("Listed %d headers\n", headmap.size());
-
-		for (String s : headmap.keySet()) {
-        	String m = String.format("Header '%s' = %s\n", s, headmap.get(s));
-            msg += m;
-            logger.info(m);
-		}
-
-		return Response.ok(msg).build();
+		StringBuilder sb = new StringBuilder();
+		headers.getRequestHeaders().forEach((k,v) -> sb.append(String.format("Header '%s' = %s\n", k,v)));
+		return Response.ok(sb.toString()).build();
 	}
 	
 	@GET
