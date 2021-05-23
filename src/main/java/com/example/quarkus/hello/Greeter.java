@@ -11,7 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.*;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 
 import org.jboss.logging.Logger;
 
@@ -19,7 +20,7 @@ import org.jboss.logging.Logger;
 public class Greeter {
 
 	private static final Logger logger = Logger.getLogger(Greeter.class);
-	private static SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
+	private static final SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
