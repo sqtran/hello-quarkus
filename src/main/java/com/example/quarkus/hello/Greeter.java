@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.logging.Logger;
 
-@Path("/")
+@Path("/greeter")
 public class Greeter {
 
 	private static final Logger logger = Logger.getLogger(Greeter.class);
