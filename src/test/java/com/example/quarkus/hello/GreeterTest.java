@@ -13,7 +13,7 @@ public class GreeterTest {
     @Test
     public void testHomeEndpoint() {
         given()
-          .when().get("/")
+          .when().get("/greeter")
           .then().assertThat()
             .statusCode(200)
             .body(CoreMatchers.containsString("Hello World! : IP"));
@@ -22,7 +22,7 @@ public class GreeterTest {
     @Test
     public void testHeaders() {
         given()
-          .when().get("/headers")
+          .when().get("/greeter/headers")
           .then().assertThat()
              .statusCode(200);
     }
