@@ -17,6 +17,7 @@
     <quarkus.platform.version>1.13.4.Final</quarkus.platform.version>
     <quarkus-plugin.version>1.13.4.Final</quarkus-plugin.version>
     <surefire-plugin.version>2.22.1</surefire-plugin.version>
+    <quarkus.package.type>uber-jar</quarkus.package.type>
   </properties>
   <dependencyManagement>
     <dependencies>
