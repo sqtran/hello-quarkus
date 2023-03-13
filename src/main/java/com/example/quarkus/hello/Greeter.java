@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.logging.Logger;
 
-@Path("/greeter")
+@Path("/")
 public class Greeter {
 
 	private static final Logger logger = Logger.getLogger(Greeter.class);
@@ -47,7 +47,7 @@ public class Greeter {
 		headers.getRequestHeaders().forEach((k,v) -> sb.append(String.format("Header '%s' = %s\n", k,v)));
 		return Response.ok(sb.toString()).build();
 	}
-	
+
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/health")
