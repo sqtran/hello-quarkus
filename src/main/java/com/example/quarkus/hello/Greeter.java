@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -23,7 +24,7 @@ public class Greeter {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/")
+	@Path("")
 	public String home() throws UnknownHostException {
 		logger.info("Home endpoint called! " + InetAddress.getLocalHost() + " : " + InetAddress.getLocalHost().getHostName());
 		return String.format("%s Hello World! : IP %15s : hostname %20s\n", formatter.format(new Date()), InetAddress.getLocalHost().getHostAddress(), InetAddress.getLocalHost().getHostName());
@@ -31,7 +32,7 @@ public class Greeter {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/hello")
+	@Path("hello")
 	public String hello() {
 		logger.info("hello endpoint called");
 		return "hello world";
@@ -39,7 +40,7 @@ public class Greeter {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/headers")
+	@Path("headers")
 	public Response headers(@Context HttpHeaders headers) {
 		logger.info("headers endpoint called");
 
@@ -50,7 +51,17 @@ public class Greeter {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/health")
+	@Path("sleep")
+	public String sleep(@QueryParam("time") int time) throws InterruptedException {
+		logger.info("sleep endpoint called, sleeping for " + time + " milliseconds");
+		Thread.sleep(time);
+		return "woke up";
+	}
+
+
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("health")
     public String health() {
     	logger.info("health endpoint called");
     	return "status.:.UP";
