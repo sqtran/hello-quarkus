@@ -104,5 +104,5 @@ I noticed that the s2i images were severely bloated.  Some of the builds were ~1
 mvn package -Pnative
 
 # build container image
-podman build -f /src/main/docker/Dockerfile.native -t <registry>hello-quarkus:<tag> .
+podman build -f src/main/docker/Dockerfile.native -t <registry>/hello-quarkus:<tag> .
 ```
