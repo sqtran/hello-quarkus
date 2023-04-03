@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -79,7 +80,7 @@ public class Greeter {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("varsleep")
 	public String varsleep(@QueryParam("min") int min, @QueryParam("max") int max) throws InterruptedException {
-		int randomTime = min + (int)(Math.random() * ((max - min) + 1));
+		int randomTime = ThreadLocalRandom.current().nextInt(min, (max == 0 ? min*2: max) + 1);
 		logger.info("varsleep endpoint called, sleeping for " + randomTime + " milliseconds");
 		Thread.sleep(randomTime);
 		return String.format("woke up after %d milliseconds", randomTime);
