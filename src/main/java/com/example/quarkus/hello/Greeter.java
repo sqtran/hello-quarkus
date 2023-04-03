@@ -16,6 +16,9 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.logging.Logger;
 
+import io.vertx.core.MultiMap;
+import io.vertx.core.http.HttpServerRequest;
+
 @Path("/")
 public class Greeter {
 
@@ -51,11 +54,35 @@ public class Greeter {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("sleep")
-	public String sleep(@QueryParam("time") int time) throws InterruptedException {
-		logger.info("sleep endpoint called, sleeping for " + time + " milliseconds");
+	@Path("queries")
+	public Response queries(@Context HttpServerRequest request) {
+		logger.info("queries endpoint called");
+
+		// Get all query parameters as a map
+		MultiMap queryParams = request.params();
+
+		StringBuilder sb = new StringBuilder();
+		queryParams.names().forEach((k -> sb.append(String.format("QueryParam '%s' = %s\n", k, queryParams.get(k)))));
+		return Response.ok(sb.toString()).build();
+	}
+
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("consleep")
+	public String consleep(@QueryParam("time") int time) throws InterruptedException {
+		logger.info("consleep endpoint called, sleeping for " + time + " milliseconds");
 		Thread.sleep(time);
-		return "woke up";
+		return String.format("woke up after %d milliseconds", time);
+	}
+
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("varsleep")
+	public String varsleep(@QueryParam("min") int min, @QueryParam("max") int max) throws InterruptedException {
+		int randomTime = min + (int)(Math.random() * ((max - min) + 1));
+		logger.info("varsleep endpoint called, sleeping for " + randomTime + " milliseconds");
+		Thread.sleep(randomTime);
+		return String.format("woke up after %d milliseconds", randomTime);
 	}
 
 
