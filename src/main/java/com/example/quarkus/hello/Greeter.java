@@ -86,6 +86,27 @@ public class Greeter {
 		return String.format("woke up after %d milliseconds", randomTime);
 	}
 
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("busy")
+	public String busy(@QueryParam("iterations") int iterations) throws InterruptedException {
+		logger.info("busy endpoint called");
+
+		double x = 0.1;
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < iterations; i++) {
+			// random noise
+            x = Math.sin(x);
+            x = Math.cos(x);
+            x = Math.tan(x);
+            x = Math.exp(x);
+            x = Math.log(x);
+        }
+        long totalTime = System.currentTimeMillis() - startTime;
+        logger.info(String.format("Total CPU busy time for %d iterations was %d milliseconds", iterations, totalTime));
+
+		return String.format("Busy for %d milliseconds", totalTime);
+	}
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
