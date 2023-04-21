@@ -3,6 +3,7 @@ package com.example.quarkus.hello;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -47,9 +48,8 @@ public class Greeter {
 	@Path("headers")
 	public Response headers(@Context HttpHeaders headers) {
 		logger.info("headers endpoint called");
-
 		StringBuilder sb = new StringBuilder();
-		headers.getRequestHeaders().forEach((k,v) -> sb.append(String.format("Header '%s' = %s\n", k,v)));
+ 		new ArrayList<String>(headers.getRequestHeaders().keySet()).forEach(k -> sb.append(String.format("Header '%s' = %s\n", k, headers.getRequestHeaders().get(k))));
 		return Response.ok(sb.toString()).build();
 	}
 
