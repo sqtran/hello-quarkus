@@ -41,6 +41,14 @@ public class Greeter {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
+    @Path("whoami")
+    public String whoami(@Context HttpServerRequest request) {
+        logger.info("whoami endpoint called");
+        return String.format("hello %s", request.remoteAddress().host());
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("headers")
     public Response headers(@Context HttpHeaders headers) {
         logger.info("headers endpoint called");
