@@ -106,3 +106,10 @@ mvn package -Pnative
 # build container image
 podman build -f src/main/docker/Dockerfile.native -t <registry>/hello-quarkus:<tag> .
 ```
+
+
+## Latest base images found here
+https://catalog.redhat.com/software/containers/ubi8-minimal/5c64772edd19c77a158ea216
+https://catalog.redhat.com/software/containers/ubi8/ubi-minimal/5c359a62bed8bd75a2c3fba8
+
+https://quay.io/repository/quarkus/quarkus-micro-image?tab=tags
