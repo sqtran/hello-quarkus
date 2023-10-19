@@ -8,10 +8,10 @@ import static io.restassured.RestAssured.given;
 import org.hamcrest.CoreMatchers;
 
 @QuarkusTest
-public class GreeterTest {
+class GreeterTest {
 
     @Test
-    public void testHomeEndpoint() {
+    void testHomeEndpoint() {
         given()
           .when().get("/hello")
           .then().assertThat()
@@ -20,7 +20,7 @@ public class GreeterTest {
     }
 
     @Test
-    public void testHeaders() {
+    void testHeaders() {
         given()
           .when().get("/headers")
           .then().assertThat()
