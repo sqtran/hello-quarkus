@@ -14,7 +14,7 @@
 # docker run -i --rm -p 8080:8080 quarkus/hello-quarkus
 #
 ###
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.4-1227.1726694542
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.5-1731593028
 WORKDIR /work/
 COPY --chown=1001:root target/*-runner /work/application
 
